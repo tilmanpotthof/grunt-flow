@@ -20,7 +20,7 @@ module.exports = function(grunt) {
         var options = this.options({
             testing: false,
             style: 'color',
-            src: './'
+            src: ''
         });
 
         // Read .flowconfig file
@@ -116,7 +116,7 @@ module.exports = function(grunt) {
         var done = this.async();
 
         // Run `flow check` command
-        var cmd = spawn(flow, ['check'], {stdio: ['pipe']});
+        var cmd = spawn(flow, ['check', '--all', options.src], {stdio: ['pipe']});
 
         cmd.stdout.on('data', function(data) {
             // Convert data buffer to ascii string and colorize output
