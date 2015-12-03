@@ -19,14 +19,15 @@ module.exports = function(grunt) {
         // Merge task-specific and/or target-specific options with these defaults.
         var options = this.options({
             testing: false,
-            style: 'color'
+            style: 'color',
+            src: './'
         });
 
         // Read .flowconfig file
-        var flowConfigFile = grunt.file.read('.flowconfig');
+        var flowConfigFile = grunt.file.read(options.src + '.flowconfig');
 
         if (!flowConfigFile) {
-            return grunt.error('No .flowconfig file found!');
+            return grunt.error('Config file not found at: ' + flowConfigFile);
         }
 
         // Recreate color output from flow library
